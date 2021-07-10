@@ -26,6 +26,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "src/styles/partials"
+              ]
+            },
             "assets": [
               "src/favicon.ico",
               "src/assets"
