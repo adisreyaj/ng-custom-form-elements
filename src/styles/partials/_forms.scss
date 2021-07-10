@@ -1,0 +1,59 @@
+.form-group {
+  @apply flex flex-col;
+  @apply items-start;
+  @apply pb-6;
+  @apply relative;
+  & > label {
+    @apply text-gray-700;
+    @apply mb-1;
+    @apply text-base;
+    @apply font-medium;
+  }
+
+  textarea {
+    @apply focus:ring-1;
+    @apply focus:ring-primary;
+    resize: none;
+    &:disabled {
+      @apply text-gray-400;
+    }
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    @apply text-primary;
+    @apply cursor-pointer;
+    @apply rounded-md;
+    @apply focus:ring-primary;
+  }
+}
+
+[type='text'],
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+  @apply text-gray-700;
+  @apply border-gray-200;
+  @apply shadow-md;
+  @apply rounded-md;
+  @apply focus:border-primary;
+  @apply focus:ring-1;
+  @apply focus:border-primary;
+  @apply focus:ring-primary;
+  @apply transition-all duration-200;
+  @apply text-sm;
+  &:disabled {
+    @apply text-gray-400;
+  }
+}
