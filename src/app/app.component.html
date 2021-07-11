@@ -20,9 +20,13 @@
       <label>Communication</label>
       <app-communication-preference formControlName="communications"></app-communication-preference>
     </div>
-    <footer class="flex items-center justify-end mt-4 space-x-2">
-      <button class="btn secondary">Cancel</button>
-      <button class="btn primary">Save</button>
+    <footer class="flex items-center justify-between mt-4">
+      <button class="btn secondary" (click)="toggleServerDisable()">{{this.form.get('server')?.disabled ?
+        'Enable':'Disable'}} Server</button>
+      <div class="space-x-2">
+        <button class="btn primary">Save</button>
+        <button class="btn secondary">Cancel</button>
+      </div>
     </footer>
   </form>
 </main>

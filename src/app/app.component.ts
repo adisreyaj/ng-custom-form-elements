@@ -46,4 +46,9 @@ export class AppComponent {
   constructor(private fb: FormBuilder) {
     this.form.valueChanges.subscribe(console.info);
   }
+
+  toggleServerDisable() {
+    const server = this.form.get('server');
+    server?.disabled ? server.enable() : server?.disable();
+  }
 }

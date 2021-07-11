@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, forwardRef, Provider } from '@angular/core';
+import { Component, forwardRef, Provider } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
@@ -14,12 +14,13 @@ const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
     <div class="grid grid-cols-4 gap-4 mt-2">
       <ng-container *ngFor="let country of countries">
         <button
+          [disabled]="disabled"
           [attr.tabindex]="selected === country.code ? -1 : 0"
           (click)="selectCountry(country.code)"
           class="flex flex-col items-center rounded-md border p-2 relative"
-          [class.selected]="selected === country.code"
+          [class.selected]="!disabled && selected === country.code"
         >
-          <ng-container *ngIf="selected === country.code">
+          <ng-container *ngIf="!disabled && selected === country.code">
             <svg
               @selected
               xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +54,9 @@ const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
         &:not(.selected) {
           @apply focus:ring focus:ring-primary focus:ring-2;
         }
+        &:disabled {
+          opacity: 0.7;
+        }
       }
       .selected {
         @apply shadow-lg border-primary;
@@ -67,7 +71,6 @@ const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
       transition(':leave', animate('300ms ease-in-out')),
     ]),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountrySelectorComponent implements ControlValueAccessor {
   countries = [
@@ -77,7 +80,7 @@ export class CountrySelectorComponent implements ControlValueAccessor {
     { code: 'NL', name: 'Netherlands' },
   ];
   selected!: string;
-
+  disabled = false;
   private onTouched!: Function;
   private onChanged!: Function;
 
@@ -95,5 +98,8 @@ export class CountrySelectorComponent implements ControlValueAccessor {
   }
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
   }
 }

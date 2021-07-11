@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, forwardRef, Provider } from '@angular/core';
+import { Component, forwardRef, Provider } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface CommunicationPreference {
@@ -44,7 +44,6 @@ const COM_PREFERENCE_CONTROL_VALUE_ACCESSOR: Provider = {
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommunicationPreferenceComponent implements ControlValueAccessor {
   options: CommunicationPreference[] = [];

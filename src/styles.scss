@@ -14,3 +14,7 @@ body * {
 @import 'colors';
 @import 'forms';
 @import 'buttons';
+
+button:disabled {
+  cursor: not-allowed;
+}
